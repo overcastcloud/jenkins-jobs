@@ -8,11 +8,11 @@
     triggers:
       - pollscm: "H/5 * * * *"
 
-- job:
-    name: glance-upstream
+- job-template:
+    name: "{name}-upstream-master"
     scm:
       - git:
-          url: https://github.com/openstack/glance
+          url: "https://github.com/openstack/{name}"
           branch: master
 
     triggers:
@@ -25,3 +25,23 @@
           . venv/bin/activate
           pip install tox
           tox -e py27
+
+- project:
+    name: nova
+    jobs:
+      - "{name}-upstream-master"
+
+- project:
+    name: glance
+    jobs:
+      - "{name}-upstream-master"
+
+- project:
+    name: keystone
+    jobs:
+      - "{name}-upstream-master"
+
+- project:
+    name: cinder
+    jobs:
+      - "{name}-upstream-master"
