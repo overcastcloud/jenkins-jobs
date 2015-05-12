@@ -8,3 +8,20 @@
     triggers:
       - pollscm: "H/5 * * * *"
 
+- job:
+    name: glance-upstream
+    scm:
+      - git:
+          url: https://github.com/openstack/glance
+          branch: master
+
+    triggers:
+      - pollscm: "H/15 * * * *"
+
+    builders:
+      - shell: |
+          #!/bin/bash
+          virtualenv venv
+          . venv/bin/activate
+          pip install tox
+          tox -e py27
