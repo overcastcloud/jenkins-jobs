@@ -45,3 +45,20 @@
     name: cinder
     jobs:
       - "{name}-upstream-master"
+
+- job:
+    name: schmenkins
+    scm:
+      - git:
+          url: https://github.com/Linux2Go/schmenkins.git
+    builders:
+      - shell: |
+         #!/bin/bash
+         virtualenv venv
+         . venv/bin/activate
+         python setup.py install
+         pip install nose mock
+         nosetests -v .
+      - shell: |
+         #!/bin/bash
+         python setup.py install
