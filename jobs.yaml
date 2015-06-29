@@ -51,6 +51,10 @@
     scm:
       - git:
           url: https://github.com/Linux2Go/schmenkins.git
+
+    triggers:
+      - pollscm: "H/5 * * * *"
+
     builders:
       - shell: |
          #!/bin/bash
