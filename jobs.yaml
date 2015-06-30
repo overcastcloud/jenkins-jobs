@@ -6,7 +6,7 @@
           branch: master
 
     triggers:
-      - pollscm: "H/5 * * * *"
+      - pollscm: "* * * * *"
 
 - job-template:
     name: "{name}-upstream-master"
@@ -53,7 +53,7 @@
           url: https://github.com/Linux2Go/schmenkins.git
 
     triggers:
-      - pollscm: "H/5 * * * *"
+      - pollscm: "* * * * *"
 
     builders:
       - shell: |
