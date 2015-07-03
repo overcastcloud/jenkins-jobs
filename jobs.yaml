@@ -60,7 +60,7 @@
       - shell: |
           #!/bin/bash -xe
           cd third_party
-          python fetch_packages.py
+          USER=jenkins python fetch_packages.py
           cd ..
           rm -rf build/packages/*
           make -f packages.make VERSION=${BUILD_NUMBER} source-package-contrail source-package-ifmap-server source-package-neutron-plugin-contrail source-package-contrail-web-controller source-package-contrail-web-core
