@@ -59,6 +59,7 @@
     builders:
       - shell: |
           #!/bin/bash -xe
+          pip install lxml
           cd third_party
           USER=jenkins python fetch_packages.py
           cd ..
