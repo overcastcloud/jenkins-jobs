@@ -68,6 +68,10 @@
           cd build/packages
           for x in *.dsc; do sbuild -n -d trusty -A ${x} || true; done
 
+    publishers:
+      - archive:
+          artifacts: 'build/packages/*.dsc,build/packages/*.diff.gz,build/packages/*.tar.gz,build/packages/*.changes,build/packages/*.deb,build/packages/*.ddeb'
+
 - job:
     name: schmenkins
     scm:
