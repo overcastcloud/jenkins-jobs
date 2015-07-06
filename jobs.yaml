@@ -141,8 +141,8 @@
       - pollscm: "*/15 * * * *"
 
     publishers:
-      trigger:
-        project: overcast-python-monolith
+      - trigger:
+          project: overcast-python-monolith
 
 - job:
     name: overcast-python-monolith
