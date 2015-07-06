@@ -138,7 +138,7 @@
         url: "https://github.com/overcastde/{name}"
 
     triggers:
-      - pollscm: */15 * * * *"
+      - pollscm: "*/15 * * * *"
 
     publishers:
       trigger:
