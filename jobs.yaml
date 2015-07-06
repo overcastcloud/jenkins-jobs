@@ -27,7 +27,7 @@
           branch: master
 
     properties:
-      github: "https://github.com/openstrack/{name}"
+      github: "https://github.com/openstack/{name}"
 
     triggers:
       - pollscm: "H/15 * * * *"
