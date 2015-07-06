@@ -12,6 +12,13 @@
     triggers:
       - pollscm: "* * * * *"
 
+    builders:
+      - shell: |
+          #!/bin/bash
+          rm -rf root
+          git clone https://github.com/overcastde/root
+          ./gen-projects.py root/manifest.xml overcast-python-monolith > overcast-python-monolith-projects.yaml
+
 - job-template:
     name: "{name}-upstream-master"
     scm:
