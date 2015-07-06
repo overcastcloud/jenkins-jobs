@@ -40,25 +40,25 @@
           pip install tox
           tox -e py27
 
-- project:
-    name: nova
-    jobs:
-      - "{name}-upstream-master"
-
-- project:
-    name: glance
-    jobs:
-      - "{name}-upstream-master"
-
-- project:
-    name: keystone
-    jobs:
-      - "{name}-upstream-master"
-
-- project:
-    name: cinder
-    jobs:
-      - "{name}-upstream-master"
+#- project:
+#    name: nova
+#    jobs:
+#      - "{name}-upstream-master"
+#
+#- project:
+#    name: glance
+#    jobs:
+#      - "{name}-upstream-master"
+#
+#- project:
+#    name: keystone
+#    jobs:
+#      - "{name}-upstream-master"
+#
+#- project:
+#    name: cinder
+#    jobs:
+#      - "{name}-upstream-master"
 
 - job:
     name: contrail
