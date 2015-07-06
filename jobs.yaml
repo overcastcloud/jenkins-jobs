@@ -1,5 +1,9 @@
 - job:
     name: jenkins-jobs
+
+    properties:
+      github: https://github.com/overcastde/jenkins-jobs
+
     scm:
       - git:
           url: https://github.com/overcastde/jenkins-jobs
@@ -14,6 +18,9 @@
       - git:
           url: "https://github.com/openstack/{name}"
           branch: master
+
+    properties:
+      github: "https://github.com/openstrack/{name}"
 
     triggers:
       - pollscm: "H/15 * * * *"
@@ -77,6 +84,9 @@
     scm:
       - git:
           url: https://github.com/Linux2Go/schmenkins.git
+
+    properties:
+      github: "https://github.com/Linux2Go/schmenkins"
 
     triggers:
       - pollscm: "* * * * *"
