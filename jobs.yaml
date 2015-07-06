@@ -134,8 +134,8 @@
     name: "overcast-python-monolith-{name}"
 
     scm:
-      git:
-        url: "https://github.com/overcastde/{name}"
+      - git:
+          url: "https://github.com/overcastde/{name}"
 
     triggers:
       - pollscm: "*/15 * * * *"
@@ -148,8 +148,8 @@
     name: overcast-python-monolith
 
     scm:
-      repo:
-        manifest-url: "https://github.com/overcastde/root"
+      - repo:
+          manifest-url: "https://github.com/overcastde/root"
 
     builders:
       - shell: |
