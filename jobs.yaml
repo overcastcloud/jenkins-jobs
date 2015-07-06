@@ -109,3 +109,55 @@
       - shell: |
          #!/bin/bash
          python setup.py install
+
+- job:
+    name: process-pkg
+
+    triggers:
+      - pollscm: "* * * * *"
+
+    builders:
+      - copyartifact:
+          project: ${triggering_job}
+          filter: "**"
+          target: incoming
+          which-build: specific-build
+          build-number: ${triggering_build_number}
+          optional: true
+          flatten: true
+    builders:
+      - shell: |
+         #!/bin/bash
+         for x in *.changes ; do sudo -u reprepro -H reprepro -b  /var/lib/aptrepo/overcast --ignore=wrongdistribution include trusty $x ; done
+
+- job-template:
+    name: "overcast-python-monolith-{name}"
+
+    scm:
+      git:
+        url: "https://github.com/overcastde/{name}"
+
+    triggers:
+      - pollscm: */15 * * * *"
+
+    publishers:
+      trigger:
+        project: overcast-python-monolith
+
+- job:
+    name: overcast-python-monolith
+
+    scm:
+      repo:
+        manifest-url: "https://github.com/overcastde/root"
+
+    builders:
+      - shell: |
+          #!/bin/bash -xe
+          rm -f *.dsc *.changes *.orig.tar.gz *.debian.tar.gz || true
+          make source-overcast-python-monolith
+          for x in *.dsc; do sbuild -n -d trusty -A ${x} || true; done
+
+    publishers:
+      - archive:
+          artifacts: '*.dsc,*.diff.gz,*.tar.gz,*.changes,*.deb,*.ddeb'
