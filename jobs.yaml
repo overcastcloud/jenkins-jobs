@@ -138,8 +138,11 @@
       - git:
           url: "https://github.com/overcastcloud/{name}"
 
+    properties:
+      - github: "https://github.com/overcastcloud/{name}"
+
     triggers:
-      - pollscm: "*/15 * * * *"
+      - pollscm: "*/2 * * * *"
 
     publishers:
       - trigger:
