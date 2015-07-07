@@ -139,7 +139,7 @@
           url: "https://github.com/overcastcloud/{name}"
 
     properties:
-      - github: "https://github.com/overcastcloud/{name}"
+      github: "https://github.com/overcastcloud/{name}"
 
     triggers:
       - pollscm: "*/2 * * * *"
