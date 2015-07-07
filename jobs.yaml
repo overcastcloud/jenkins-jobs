@@ -18,6 +18,7 @@
           rm -rf root
           git clone https://github.com/overcastcloud/root
           ./gen-projects.py root/default.xml overcast-python-monolith > overcast-python-monolith-projects.yaml
+          grep '' *.yaml
 
 - job-template:
     name: "{name}-upstream-master"
