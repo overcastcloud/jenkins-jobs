@@ -142,7 +142,7 @@
       github: "https://github.com/overcastcloud/{name}"
 
     triggers:
-      - pollscm: "*/2 * * * *"
+      - pollscm: "*/5 * * * *"
 
     publishers:
       - trigger:
