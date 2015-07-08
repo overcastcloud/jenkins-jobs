@@ -114,9 +114,6 @@
 - job:
     name: process-pkg
 
-    triggers:
-      - pollscm: "* * * * *"
-
     builders:
       - copyartifact:
           project: ${triggering_job}
@@ -164,4 +161,13 @@
 
     publishers:
       - archive:
-          artifacts: '*.dsc,*.diff.gz,*.tar.gz,*.changes,*.deb,*.ddeb'
+          artifacts: '*.dsc,*.diff.gz,*.tar.gz,*.changes,*.deb'
+          allow-empty: 'true'
+      - trigger-parameterized-builds:
+          - project: "process-pkg"
+            condition: UNSTABLE_OR_BETTER
+            predefined-parameters: |
+              triggering_job=${JOB_NAME}
+              triggering_build_number=${BUILD_NUMBER}
+              distribution=trusty
+
