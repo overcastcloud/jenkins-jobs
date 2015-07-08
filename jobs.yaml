@@ -155,7 +155,7 @@
     builders:
       - shell: |
           #!/bin/bash -xe
-          rm -f *.dsc *.changes *.orig.tar.gz *.debian.tar.gz *.deb *.ddeb || true
+          rm -f *.dsc *.changes *.tar.gz *.debian.tar.gz *.deb *.ddeb || true
           make source-overcast-python-monolith
           for x in *.dsc; do sbuild -n -d trusty -A ${x}; done
 
