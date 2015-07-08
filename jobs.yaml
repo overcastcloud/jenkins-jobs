@@ -128,6 +128,7 @@
           flatten: true
       - shell: |
          #!/bin/bash
+         pip install python-debian chardet
          cd incoming
          for x in *.changes
          do
