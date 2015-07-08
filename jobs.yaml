@@ -115,6 +115,9 @@
     name: process-pkg
 
     builders:
+      - shell: |
+         #!/bin/bash
+         rm -rf incoming
       - copyartifact:
           project: ${triggering_job}
           filter: "**"
@@ -123,10 +126,14 @@
           build-number: ${triggering_build_number}
           optional: true
           flatten: true
-    builders:
       - shell: |
          #!/bin/bash
-         for x in *.changes ; do sudo -u reprepro -H reprepro -b  /var/lib/aptrepo/overcast --ignore=wrongdistribution include trusty $x ; done
+         cd incoming
+         for x in *.changes
+         do
+             python -c "from debian_bundle.deb822 import Changes; print '\n'.join([x['name'] for x in Changes(open('"${x}"', 'r').read())['Files']])" | grep \.ddeb$ | while read ddeb; do changestool ${x} dumbremove ${ddeb} ; done
+             sudo -u reprepro -H reprepro -b  /var/lib/aptrepo/overcast --ignore=wrongdistribution include trusty $x
+         done
 
 - job-template:
     name: "overcast-python-monolith-{name}"
