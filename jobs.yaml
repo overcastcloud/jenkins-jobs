@@ -158,9 +158,9 @@
     builders:
       - shell: |
           #!/bin/bash -xe
-          rm -f *.dsc *.changes *.orig.tar.gz *.debian.tar.gz || true
+          rm -f *.dsc *.changes *.orig.tar.gz *.debian.tar.gz *.deb *.ddeb || true
           make source-overcast-python-monolith
-          for x in *.dsc; do sbuild -n -d trusty -A ${x} || true; done
+          for x in *.dsc; do sbuild -n -d trusty -A ${x}; done
 
     publishers:
       - archive:
